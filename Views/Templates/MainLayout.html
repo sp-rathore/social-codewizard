@@ -1,0 +1,46 @@
+$def with (page)
+$var css: static/css/bootstrap.min.css static/css/materialize.min.css static/css/ripples.min.css
+<html lang="en">
+<script src= "http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src= "https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<script src= "https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script src= static/js/bootstrap.min.js></script>
+<script src= static/js/material.min.js></script>
+<script src= static/js/materialize.min.js></script>
+<script src="https://code.iconify.design/1/1.0.2/iconify.min.js"></script>
+<script src= static/js/ripples.min.js></script>
+<script src= static/js/mainscript.js></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CodeWizard</title>
+
+    $if self.css:
+        $for style in self.css.split():
+            <link rel="stylesheet" href="$style" />
+</head>
+<body>
+    <div id = "app" >
+        <nav>
+            <div class="nav-wrapper blue lighten-1">
+                <a href="#" class="brand-logo right">CodeWizard<div class="container"></div></a>
+                        <ul id="nav-mobile right">
+                        <li> <a class="waves-effect" href="/">Home Feed</a></li>
+                        <li><a href=“discover.html”>Discover</a></li>
+                        <li><a href=“profile.html">Profile</a></li>
+                        <li><a href=“settings.html">Settings</a></li>
+                    </ul>
+                $if session['user'] == None:
+                    <a href="/login" class="btn waves-effect blue-text indigo lighten-5">Login<div class="container"></div><</a>&nbsp; &nbsp;
+                    <a href="/register" class="btn waves-effect waves-light blue-text indigo lighten-5">Register<div class="container"></div><</a>&nbsp; &nbsp;
+                $else:
+                    <a id="logout-link" class="btn waves-effect waves-light blue-text indigo lighten-5">Logout<div class="container"></div><</a>&nbsp; &nbsp;
+            </div>
+        </nav>
+        <br /><br /><br />
+        $:page
+    </div>
+
+</body>
+</html>

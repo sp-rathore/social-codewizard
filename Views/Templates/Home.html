@@ -1,0 +1,61 @@
+$def with (posts)
+
+
+<div class="container">
+
+    $if session['user'] == None:
+        <h1> Hello Code Wizard </h1>
+    $else:
+
+        <div class="row">
+            <ul class="sidebar">
+                <li><a href="#"><i class="material-icons md-36">home</i> Home Feed </a></li>
+                <li><a href="#"><i class="material-icons md-36">face</i> Profile </a></li>
+                <li><a href="#"><i class="material-icons md-36">email</i> Messages</a></li>
+                <li><a href="#"><i class="material-icons md-36">person</i> Friends</a></li>
+                <li><a href="#"><i class="material-icons md-36">people</i> Communities</a></li>
+                <li><a href="#"><i class="material-icons md-36">notifications</i> Notifications</a></li>
+
+                <br />
+                <li class="divider"></li>
+                <br />
+
+                <li><a href="#"><i class="material-icons md-36">settings</i> Settings</a></li>
+                <li><a href="#"><i class="material-icons md-36">help</i> Help</a></li>
+            </ul>
+
+            <div class="col-md-6">
+
+                <div class="card" style="width: 18rem;">
+                    <form id="post-activity">
+                        <textarea name="content" class="post-input" placeholder="What's new, $session['user']['username']?"></textarea>
+                        <button id="post-button" class="btn btn-info btn-raised waves-effect" type="submit"><span class="mdi mdi-send"></span> Post </button>
+                    </form>
+                </div>
+
+                $for post in posts:
+
+                <div class="post-card">
+                    <br /><br />
+                    <div class="header">
+                        <div class="avatar"></div>
+                        <a href="/profile">$post['user']['name']</a>
+
+                    </div>
+
+                <div class="content">
+                    <div class="card" style="width: 24rem;">
+                        <div class="card-body">
+                            <p class="card-text">$post['content']</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="footer">
+                    <button class="btn btn-round waves-effect btn-default btn-raised btn-like"><i class="material-icons md-36">thumb_up</i></button>
+                    <button class="btn btn-round waves-effect btn-default btn-raised btn-comment"><i class="material-icons md-36">comment</i><</button>
+                 </div>
+
+            </div>
+        </div>
+</div>
